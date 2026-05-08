@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crystal Keeper</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Crystal Keeper</p>
+          <h1>Track your crystal collection, purchases, and benefits in one place.</h1>
+          <p class="hero-copy">
+            Add every bead, tower, tumble, or display piece you purchase. Search the catalogue to see whether you already own a crystal and review common benefits at a glance.
+          </p>
+        </div>
+        <div class="summary-card" id="collectionSummary"></div>
+      </header>
+
+      <main class="layout">
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Add a crystal purchase</h2>
+              <p>Store price, where you bought it, the purchase date, and a photo of your piece.</p>
+            </div>
+          </div>
+
+          <form id="crystalForm" class="crystal-form">
+            <label>
+              Crystal name
+              <input type="text" id="name" name="name" placeholder="e.g. Amethyst" required />
+            </label>
+
+            <label>
+              Type / piece style
+              <input type="text" id="form" name="form" placeholder="e.g. Bracelet, tower, bead strand" required />
+            </label>
+
+            <label>
+              Price paid
+              <input type="number" id="price" name="price" min="0" step="0.01" placeholder="0.00" required />
+            </label>
+
+            <label>
+              Where you bought it
+              <input type="text" id="store" name="store" placeholder="e.g. Etsy, local crystal shop" />
+            </label>
+
+            <label>
+              Product / shop link
+              <input type="url" id="link" name="link" placeholder="https://..." />
+            </label>
+
+            <label>
+              Purchase date
+              <input type="date" id="purchaseDate" name="purchaseDate" required />
+            </label>
+
+            <label>
+              Benefits / meaning
+              <textarea id="benefits" name="benefits" rows="3" placeholder="Add your own notes or keep the suggested benefits."></textarea>
+            </label>
+
+            <label>
+              Notes
+              <textarea id="notes" name="notes" rows="3" placeholder="Optional details about colour, size, seller, or intention."></textarea>
+            </label>
+
+            <label>
+              Photo of the piece
+              <input type="file" id="image" name="image" accept="image/*" />
+            </label>
+
+            <div class="form-actions">
+              <button type="submit">Save crystal</button>
+              <button type="reset" class="secondary">Clear</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Crystal catalogue</h2>
+              <p>Search the catalogue to see suggested benefits and whether you already own that crystal.</p>
+            </div>
+          </div>
+
+          <label class="search-input">
+            Search catalogue
+            <input type="search" id="catalogSearch" placeholder="Search by crystal name" />
+          </label>
+
+          <div id="catalogStatus" class="catalog-status"></div>
+          <div id="catalogList" class="catalog-grid"></div>
+        </section>
+
+        <section class="panel full-width">
+          <div class="panel-heading">
+            <div>
+              <h2>My collection</h2>
+              <p>Everything you have purchased, including price, store, date, notes, and photos.</p>
+            </div>
+          </div>
+
+          <div id="collectionList" class="collection-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <template id="collectionItemTemplate">
+      <article class="collection-card">
+        <div class="collection-card__image-wrap">
+          <img class="collection-card__image" alt="Crystal photo" />
+          <div class="collection-card__image-fallback">No image</div>
+        </div>
+        <div class="collection-card__content">
+          <div class="collection-card__title-row">
+            <div>
+              <h3 class="collection-card__title"></h3>
+              <p class="collection-card__subtitle"></p>
+            </div>
+            <button class="icon-button" type="button">Delete</button>
+          </div>
+          <dl class="meta-list"></dl>
+          <p class="collection-card__notes"></p>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
